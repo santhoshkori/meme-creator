@@ -53,7 +53,9 @@ class MemeGenerator extends Component {
     genrate: false,
   }
 
-  changeboolean = () => {
+  changeboolean = event => {
+    event.preventDefault()
+    console.log('hy')
     this.setState({genrate: true})
   }
 
@@ -71,16 +73,17 @@ class MemeGenerator extends Component {
 
   changeFontsize = event => {
     this.setState({fontsize: event.target.value})
+    console.log(event.target.value)
   }
 
   render() {
     const {imgurl, topheading, bottomheading, genrate, fontsize} = this.state
     return (
       <Maincontainer>
-        <Normalcnt>
+        <Normalcnt onSubmit={this.changeboolean}>
           <Heading>Meme Generator</Heading>
           <Inputcontainers>
-            <Label htmlFor="image">image URL</Label>
+            <Label htmlFor="image">Image URL</Label>
             <br />
             <Inputele
               id="image"
@@ -112,7 +115,7 @@ class MemeGenerator extends Component {
           <Inputcontainers>
             <Label htmlFor="options">Font Size</Label>
             <br />
-            <Select onChange={this.changeFontsize}>
+            <Select id="options" onChange={this.changeFontsize}>
               {fontSizesOptionsList.map(eachfontsize => (
                 <Options
                   value={eachfontsize.optionId}
@@ -123,12 +126,10 @@ class MemeGenerator extends Component {
               ))}
             </Select>
           </Inputcontainers>
-          <Button type="button" onClick={this.changeboolean}>
-            Generate
-          </Button>
+          <Button type="submit">Generate</Button>
         </Normalcnt>
         {genrate ? (
-          <Normalcnt1 image={imgurl}>
+          <Normalcnt1 image={imgurl} data-testid="meme">
             <Heading1 size={fontsize}>{topheading}</Heading1>
             <Heading1 size={fontsize}>{bottomheading}</Heading1>
           </Normalcnt1>

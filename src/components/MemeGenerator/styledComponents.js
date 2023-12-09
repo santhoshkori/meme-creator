@@ -6,7 +6,7 @@ export const Heading = styled.h1`
 
 export const Heading1 = styled.h1`
   color: #35469c;
-  font-size: props.size;
+  font-size: ${props => props.size};
 `
 
 export const Maincontainer = styled.div`
@@ -14,13 +14,12 @@ export const Maincontainer = styled.div`
   display: flex;
   flex-direction: row;
 `
-export const Normalcnt = styled.div`
+export const Normalcnt = styled.form`
   width: 50%;
 `
 
 export const Normalcnt1 = styled.div`
-  background-image: url(`${props.image}`);
-
+  background-image: url(${props => props.image});
   width: 50%;
   height: 100vh;
   background-size: cover;
